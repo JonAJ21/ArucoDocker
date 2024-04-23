@@ -1,0 +1,39 @@
+version: "3"
+
+services:
+  aruco-distance:
+    build: ArucoDistance/
+    environment:
+    # It needs for GUI
+      - DISPLAY=$DISPLAY
+    devices:
+    # It works for linux but if you want to start it with Windows change 
+    # yourCamera device
+    # - yourCamera:CameraInDockerContainer
+      - /dev/video0:/dev/video0
+    volumes:
+    # It works for Linux, but not for Windows
+    # It needs for GUI
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    # networks:
+    #   - zeromq-network
+    command: python3 test.py
+    #command: python3 ArucoDistance.py
+  
+  # Uncomment next code when there will be FetchingArucoMarks realisation
+  # fetching-aruco-marks:
+  #   build: FetchingArucoMarks/
+  #   environment:
+  #     - DISPLAY=$DISPLAY
+  #   devices:
+  #    - /dev/video0:/dev/video0
+  #   volumes:
+  #     - /tmp/.X11-unix:/tmp/.X11-unix
+  #   networks:
+  #     - zeromq-network
+  #   command: ./main
+
+  # networks:
+  #   zeromq-network:
+  #     name: zeromq-network
+  #     driver: bridge

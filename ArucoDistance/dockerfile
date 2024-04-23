@@ -1,0 +1,36 @@
+FROM ubuntu:22.04
+
+# Installing python 3.10.12 
+RUN apt update && apt upgrade -y
+RUN apt install software-properties-common -y 
+RUN add-apt-repository ppa:deadsnakes/ppa
+RUN apt install python3
+
+# Installing pip
+RUN apt install -y python3-pip
+# Installig numpy
+RUN pip install numpy
+# Installig OpenCV
+# RUN pip install opencv-contrib-python
+RUN pip install opencv-python
+# Installing libGL for OpenCV
+RUN apt-get install -y libgl1-mesa-glx
+# Installing QT plugins for GUI (it does not work without the plugins)
+RUN apt-get install -y qt6-qpa-plugins
+# Installing ZeroMQ for python
+RUN pip install pyzmq
+
+# Adding project files in container   
+ADD . /app
+
+# Builing a project
+WORKDIR /app
+
+# Program for testing
+#ENTRYPOINT ["python3 test.py"]
+
+# Program ArucoDistance
+#ENTRYPOINT ["python3 ArucoDistance.py"]
+
+
+
