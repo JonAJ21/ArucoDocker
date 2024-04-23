@@ -4,16 +4,8 @@ from cv2 import aruco
 import zmq
 import glob
 import os
-# os.environ.pop("QT_QPA_PLATFORM_PLUGIN_PATH") 
-
-
-#cap = cv.VideoCapture(0)
 
 cap = cv.VideoCapture(0)
-cap.set(cv.CAP_PROP_FOURCC, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-cap.set(cv.CAP_PROP_FRAME_WIDTH, 320)
-cap.set(cv.CAP_PROP_FRAME_HEIGHT, 240)
-cap.set(cv.CAP_PROP_FPS, 5)
 
 if not cap.isOpened():
  print("Cannot open camera")

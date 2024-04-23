@@ -16,13 +16,6 @@ def calibrateUsingCamera(cameraIndex = 0, dirToStoreGoodCalibrationFrames = None
 
     
     cap = cv.VideoCapture(cameraIndex)
-    
-    # Without these settings my camera does not work
-    cap.set(cv.CAP_PROP_FOURCC, cv.VideoWriter_fourcc('M', 'J', 'P', 'G'))
-    cap.set(cv.CAP_PROP_FRAME_WIDTH, 320)
-    cap.set(cv.CAP_PROP_FRAME_HEIGHT, 240)
-    cap.set(cv.CAP_PROP_FPS, 5)
-    
 
     goodFrames = 0
     while goodFrames < 15:
