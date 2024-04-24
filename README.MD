@@ -5,10 +5,12 @@
 
 ### Для запуска необходимо:
 ```
+
 git clone git@github.com:JonAJ21/ArucoDocker.git
 cd ArucoDocker
 sudo docker compose build
 sudo docker compose up
+
 ```
 
 ### Замечания:
@@ -42,3 +44,5 @@ find_package(ZeroMQ REQUIRED)
 ```
 Т.к. по каким-то причинам СMake не может найти библиотеку ZeroMQ с таким названием.
 3. Образ не соберется.  (При компиляции появляются ошибки, связанные с vtable, вероятно из-за отсутствующей реализации методов классов). 
+4. Пока не подключена библиотека boost-property_tree, т.к. она не используется в исходниках.
+5. Такие же проблемы с камерой в WSL как для ArucoDistance
