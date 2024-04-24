@@ -5,12 +5,10 @@
 
 ### Для запуска необходимо:
 ```
-
 git clone git@github.com:JonAJ21/ArucoDocker.git
 cd ArucoDocker
 sudo docker compose build
 sudo docker compose up
-
 ```
 
 ### Замечания:
