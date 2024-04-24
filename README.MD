@@ -1,23 +1,33 @@
-### Для https://github.com/Timur-ux/DPP-Fight-Bees
-Было написано два dockerfile для сборки образа, и docker-compose.yml для запуска контейнеров
-1. ArucoDistance
-Модуль, отвечающий за расчет расстояния до Aruco меток. С помощью докер теперь можно запускать программу.
-У докер контейнеру есть доступ к камере и дисплею копьютера, на котором он запускается.
-Отлично работает на OS Ubuntu 22.04.
-Еслии возникли проблемы при связке дисплеев докера и вашей ОС, то поможет команда:
-xhost +local:docker (она прописывается в консоли вашей ОС)
-Возникают сложности при запуске на Windows 10 при помощи WSL:
-Для подключения камер к WSL надо модифицировать ядро:
-См. видео: https://www.youtube.com/watch?v=t_YnACEPmrM&t=2s&ab_channel=AgileDevArt
-+ Лично у меня, камера заработала только в разрешении 320x240 и 5 FPS
-Из-за этого чтобы работала камера в OpenCV приходилось прописывать следующие команды:
-'''
-# Capture video from camera
-cap = cv2.VideoCapture(0)
+# DPP-Fight-Bees
+###  Ссылка на репозиторий: [https://github.com/Timur-ux/DPP-Fight-Bees](https://github.com/Timur-ux/DPP-Fight-Bees)
+### Было сделано:
+Было написано два dockerfile для сборки образа, и docker-compose.yml для простого запуска контейнеров.
 
-# Without these settings my camera does not work
+### Для запуска необходимо:
+```
+
+git clone git@github.com:JonAJ21/ArucoDocker.git
+cd ArucoDocker
+sudo docker compose build
+sudo docker compose up
+
+```
+
+### Замечания:
+#### ArucoDistance
+У контейнера есть доступ к камере и дисплею host системы.
+Отлично работает на OS Ubuntu 22.04. Но перед запуском контейнера надо дать доступ к дисплею с помощью следующей команды:
+```
+xhost +local:docker
+```
+Могут возникнуть сложности при запуске на Windows 10, используя WSL: 
+1. Чтобы использовать камеры в WSL дать доступ к usb устройствам, подключенным к host ПК и модифицировать ядро.
+(https://www.youtube.com/watch?v=t_YnACEPmrM&t=2s&ab_channel=AgileDevArt)
+2. У меня камеры в WSL заработали только при разрешении 320x240 и 5 fps. Из-за этого для работы камеры в OpenCV приходилось писать следующий код:
+```
+cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G'))
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 320)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 240)
-cap.set(cv2.CAP_PROP_FPS, 5)
-'''
+cap.set(cv2.CAP_PROP_FPS, 5) 
+```
