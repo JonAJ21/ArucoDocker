@@ -1,7 +1,7 @@
 # DPP-Fight-Bees
 ###  Ссылка на репозиторий: [https://github.com/Timur-ux/DPP-Fight-Bees](https://github.com/Timur-ux/DPP-Fight-Bees)
-### Было сделано:
-Было написано два dockerfile для сборки образа, и docker-compose.yml для простого запуска контейнеров.
+### Что сделано:
+Написано два dockerfile для сборки образа, и docker-compose.yml для простого запуска контейнеров.
 
 ### Для запуска необходимо:
 ```
